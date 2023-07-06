@@ -15,18 +15,24 @@ const Card = () => {
             Some quick example text to build on the card title{" "}
           </p>
           <div className="container w-100">
-            <select className="m-2 h-100 bg-success rounded" style={{"color":"#fff"}}>
-                {
-                    Array.from(Array(6),(v,i)=><option value={i+1} key={i+1}>{i+1}</option>)
-                }
+            <select
+              className="m-2 h-100 bg-success rounded"
+              style={{ color: "#fff" }}
+            >
+              {Array.from(Array(6), (v, i) => (
+                <option value={i + 1} key={i + 1}>
+                  {i + 1}
+                </option>
+              ))}
             </select>
-            <select className="m-2 h-100 bg-success rounded"  style={{"color":"#fff"}}>
-                <option value="half">half</option>
-                <option value="full">full</option>
+            <select
+              className="m-2 h-100 bg-success rounded"
+              style={{ color: "#fff" }}
+            >
+              <option value="half">half</option>
+              <option value="full">full</option>
             </select>
-            <div className="d-inline fs-5 h-100">
-                Total Price
-            </div>
+            <div className="d-inline fs-5 h-100">Total Price</div>
           </div>
         </div>
       </div>

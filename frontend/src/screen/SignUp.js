@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 
 const SignUp = () => {
+  const navigate=useNavigate();
   const [userDetails, setuserDetails] = useState({
     name: "",
     phone: "",
@@ -27,14 +28,17 @@ const SignUp = () => {
       })
     });
     // console.log(response.json());
-    // console.log(response);
+    console.log(response);
     const returnResponse = await response.json();
-    // console.log(returnResponse);
+    console.log(returnResponse);
     if(response.status===404){
       alert(returnResponse.errors[0].msg);
     }else if(response.status===400){
       console.log(returnResponse);
     }else{
+      localStorage.setItem("authToken",returnResponse.authToken);
+      console.log(localStorage.getItem("authToken"));
+      navigate("/");
       console.log("data saved in database");
     }    
 

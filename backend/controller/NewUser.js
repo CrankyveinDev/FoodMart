@@ -1,6 +1,8 @@
 import User from "../models/User.js";
 import bcryptJs from "bcryptjs";
+import jwt from "jsonwebtoken";
 import { validationResult } from "express-validator";
+const secretKey = "catchmeifyoucan";
 
 const signUP = async (req, res) => {
   const errors = validationResult(req);
@@ -24,7 +26,13 @@ const signUP = async (req, res) => {
       password: secPassword,
     });
     // console.log(data);
-    res.status(200).json({ success: true });
+    const id = {
+      user: {
+        id: data._id,
+      },
+    };
+    const authToken = jwt.sign(id, secretKey);
+    res.status(200).json({ success: true, authToken: authToken });
   } catch (error) {
     // console.log(error);
     res.status(400).json({ error });
