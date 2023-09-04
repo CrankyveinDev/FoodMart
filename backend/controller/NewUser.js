@@ -11,7 +11,7 @@ const signUP = async (req, res) => {
     return res.status(404).json({ errors: errors.array() });
   }
   const salt = bcryptJs.genSaltSync(10);
-  let secPassword = await bcryptJs.hashSync(req.body.password, salt);
+  let secPassword =  bcryptJs.hashSync(req.body.password, salt);
   const data = await User.findOne({ email: req.body.email });
   if (data)
     return res
